@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center" style="padding: 10px; border: 1px solid #ccc; background-color: #f9f9f9; border-radius: 10px; margin-bottom: 20px;">
+    <h2 style="margin: 0; font-size: 24px; color: #333;">lovido is OUT! 🎉</h2>
+    <p style="margin: 5px 0 0 0; font-size: 16px; color: #666;">Read all about it on <a href="https://www.linkedin.com/in/abdibrokhim/" style="text-decoration: underline; color: #1a73e8;"> LinkedIn</a>!</p>
+</div>
 
-## Getting Started
+<!-- markdownlint-disable MD030 -->
 
-First, run the development server:
+# [![Loom Video Downloader](./assets/landing.png)](https://lovido.vercel.app/)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+<p align="center"><strong>
+    Download your Loom videos with lovido! 🚀
+</strong></p>
+<p align="center"><strong>
+    It's fully FREE. 
+</strong></p>
+
+
+## 🚀 Watch the video
+How to download your Loom videos with lovido (Loom Downloader)
+
+[![YouTube]()]()
+
+### Try it now [lovido](https://lovido.vercel.app/)
+
+## 📦 Run Locally
+
+Clone the repository with:
+
+```shell
+git clone https://github.com/abdibrokhim/loom-dl-web
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Install the dependencies with:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```shell
+npm install
+```
+and 
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Run the development server with:
 
-## Learn More
+```shell
+npm run dev
+```
+Open http://localhost:3000 in your browser.
 
-To learn more about Next.js, take a look at the following resources:
+## 🦄 Important
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+if it was useful. Please consider [donate](https://buymeacoffee.com/abdibrokhim/) and i will buy custom domain for this project.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🥂 Discord bot
 
-## Deploy on Vercel
+Join our community Discord server [Open Community](https://discord.gg/nVtmDUN2sR)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🐞 Bug report or Feature request
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Message me at abdibrokhim@gmail.com
+
+## 👋 Want to Contribute?
+
+Kindly check the [CONTRIBUTING.md](https://github.com/abdibrokhim/loom-dl-web/blob/main/CONTRIBUTING.md)
+
+## ⭐️ Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=abdibrokhim/loom-dl-web&type=Date)](https://star-history.com/#abdibrokhim/loom-dl-web&Date)
+
+## 🙏 Support
+If you wish to support further development and feel extra awesome, you can [donate](https://buymeacoffee.com/abdibrokhim/), become a [Patron](https://www.patreon.com/abdibrokhim) or [follow on LinkedIn](https://www.linkedin.com/in/abdibrokhim/).

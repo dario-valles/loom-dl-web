@@ -6,6 +6,7 @@ import { faDownload } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Notification from '../lib/notify';
 import Footer from './Footer';
+import { Analytics } from "@vercel/analytics/react"
 
 const LoomDownloader = () => {
     const [loomUrl, setLoomUrl] = useState('');
@@ -63,6 +64,7 @@ const LoomDownloader = () => {
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen text-white p-4 bg-[#212121e6]">
+            <Analytics />
             {notification && (
                 <Notification
                     message={notification.message}
