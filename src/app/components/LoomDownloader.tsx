@@ -227,7 +227,6 @@ const LoomDownloader = () => {
       </form>
 
       <div className="mt-auto">
-        <Footer />
       </div>
     </div>
   );
