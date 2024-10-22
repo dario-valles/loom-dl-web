@@ -7,7 +7,6 @@ import { Analytics } from "@vercel/analytics/react";
 import Notification from '../lib/notify';
 import Footer from './Footer';
 
-// Types
 type NotificationType = 'error' | 'success' | 'info';
 
 interface NotificationState {
@@ -20,7 +19,6 @@ interface DownloadResponse {
   error?: string;
 }
 
-// Components
 const LoadingSpinner = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -90,6 +88,7 @@ const DownloadButton = ({
   </button>
 );
 
+
 const LoomDownloader = () => {
   const [loomUrl, setLoomUrl] = useState('');
   const [title, setTitle] = useState('');
@@ -99,6 +98,34 @@ const LoomDownloader = () => {
   const showNotification = useCallback((message: string, type: NotificationType) => {
     setNotification({ message, type });
   }, []);
+
+  const generateFilename = (customTitle: string): string => {
+    const sanitizedTitle = customTitle
+      .trim()
+      .replace(/[^\w\s-]/g, '') // Remove special characters
+      .replace(/\s+/g, '-') // Replace spaces with hyphens
+      .toLowerCase();
+
+    return sanitizedTitle ? `${sanitizedTitle}.mp4` : 'video.mp4';
+  };
+
+  const downloadWithFilename = async (url: string, filename: string) => {
+    try {
+      const response = await fetch(url);
+      const blob = await response.blob();
+      const blobUrl = window.URL.createObjectURL(blob);
+
+      const link = document.createElement('a');
+      link.href = blobUrl;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(blobUrl);
+    } catch (error) {
+      throw new Error('Failed to download the video file');
+    }
+  };
 
   const downloadVideo = async () => {
     if (!loomUrl) {
@@ -110,6 +137,7 @@ const LoomDownloader = () => {
     showNotification('Downloading video...', 'info');
 
     try {
+      // First, get the video URL from our API
       const response = await fetch('/api/loom-dl', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -125,13 +153,11 @@ const LoomDownloader = () => {
         throw new Error(data.error || 'Failed to download video');
       }
 
-      // Create and trigger download
-      const link = document.createElement('a');
-      link.href = data.videoUrl;
-      link.download = `${title || loomUrl.split('/').pop()}.mp4`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      // Generate filename
+      const filename = generateFilename(title || 'loom-video');
+
+      // Download the video with the custom filename
+      await downloadWithFilename(data.videoUrl, filename);
 
       showNotification('Video downloaded successfully!', 'success');
       setLoomUrl('');
@@ -145,6 +171,11 @@ const LoomDownloader = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    downloadVideo();
   };
 
   return (
@@ -163,14 +194,17 @@ const LoomDownloader = () => {
         Paste Loom Video URL below
       </h1>
 
-      <div className="lg:w-[60%] w-full mx-auto flex flex-col sm:flex-row items-center p-2 mb-8 shadow-lg gap-4 bg-[#2e2e2e] rounded-full">
+      <form
+        onSubmit={handleSubmit}
+        className="lg:w-[60%] w-full mx-auto flex flex-col sm:flex-row items-center p-2 mb-8 shadow-lg gap-4 bg-[#2e2e2e] rounded-full"
+      >
         <input
           type="text"
-          placeholder="Enter Title (optional)"
+          placeholder="Enter filename (optional)"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           disabled={loading}
-          aria-label="Video title"
+          aria-label="Video filename"
           className="w-full sm:w-auto p-2 rounded bg-[#3e3e3e] text-white placeholder:text-[#aeaeae] focus:outline-none focus:ring-2 focus:ring-[#4e4e4e]"
         />
 
@@ -190,7 +224,7 @@ const LoomDownloader = () => {
           loading={loading}
           onClick={downloadVideo}
         />
-      </div>
+      </form>
 
       <div className="mt-auto">
         <Footer />
